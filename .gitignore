@@ -1,0 +1,8 @@
+.vs/
+TransactionManagement.Core/bin/
+TransactionManagement.Core/obj/
+TransactionManagement.Infrastructure/bin/
+TransactionManagement/TransactionManagement.csproj.user
+TransactionManagement.Infrastructure/obj/
+TransactionManagement/bin/
+TransactionManagement/obj/
