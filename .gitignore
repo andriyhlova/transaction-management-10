@@ -6,3 +6,5 @@ TransactionManagement/TransactionManagement.csproj.user
 TransactionManagement.Infrastructure/obj/
 TransactionManagement/bin/
 TransactionManagement/obj/
+TransactionManagement.UnitTests/bin/
+TransactionManagement.UnitTests/obj/
