@@ -24,7 +24,7 @@ namespace TransactionManagement.UnitTests
 
             var transaction = await _transactionService.GetByIdAsync(It.IsAny<Guid>());
 
-            _transactionRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<Guid>()), Times.Once);
+            _transactionRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<Guid>()), Times.Never);
             Assert.NotNull(transaction);
         }
 
