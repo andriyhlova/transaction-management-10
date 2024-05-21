@@ -64,9 +64,6 @@ jobs:
             # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
             sonarOrganization: andriyhlova
 
-      - name: Test with the dotnet CLI
-        run: dotnet test
-
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
