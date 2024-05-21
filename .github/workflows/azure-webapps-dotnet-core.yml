@@ -54,15 +54,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: SonarScanner for .NET 8 with pull request decoration support
-        uses: highbyte/sonarscan-dotnet@v2.3.2
-        with:
-            # The key of the SonarQube project
-            sonarProjectKey: andriyhlova_transaction-management-10
-            # The name of the SonarQube project
-            sonarProjectName:  transaction-management-10
-            # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
-            sonarOrganization: andriyhlova
+      - name: Build with dotnet
+        run: |
+            dotnet tool install --global dotnet-sonarscanner
+            dotnet sonarscanner begin /k:"project-key" /d:sonar.token="${{ secrets.GITHUB_TOKEN }}"
+            dotnet build --no-incremental
+            dotnet sonarscanner end /d:sonar.token="${{ secrets.GITHUB_TOKEN }}"
 
       - name: Test with the dotnet CLI
         run: dotnet test
