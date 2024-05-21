@@ -54,12 +54,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Build with dotnet
-        run: |
-            dotnet tool install --global dotnet-sonarscanner
-            dotnet sonarscanner begin /k:"project-key" /d:sonar.token="${{ secrets.GITHUB_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /o:"andriyhlova"
-            dotnet build --no-incremental
-            dotnet sonarscanner end /d:sonar.token="${{ secrets.GITHUB_TOKEN }}"
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Test with the dotnet CLI
         run: dotnet test
