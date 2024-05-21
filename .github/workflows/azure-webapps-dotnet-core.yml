@@ -23,6 +23,8 @@ env:
   AZURE_WEBAPP_NAME: transaction-management-10    # set this to the name of your Azure Web App
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '8.0'                 # set this to the .NET Core version to use
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
@@ -52,14 +54,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarScanner for .NET 8 with pull request decoration support
+        uses: highbyte/sonarscan-dotnet@v2.3.2
+        with:
+            # The key of the SonarQube project
+            sonarProjectKey: andriyhlova_transaction-management-10
+            # The name of the SonarQube project
+            sonarProjectName:  transaction-management-10
+            # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
+            sonarOrganization: andriyhlova
 
       - name: Test with the dotnet CLI
         run: dotnet test
