@@ -57,7 +57,7 @@ jobs:
       - name: Build with dotnet
         run: |
             dotnet tool install --global dotnet-sonarscanner
-            dotnet sonarscanner begin /k:"project-key" /d:sonar.token="${{ secrets.GITHUB_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /o:"Andriy Hlova"
+            dotnet sonarscanner begin /k:"project-key" /d:sonar.token="${{ secrets.GITHUB_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /o:"andriyhlova"
             dotnet build --no-incremental
             dotnet sonarscanner end /d:sonar.token="${{ secrets.GITHUB_TOKEN }}"
 
