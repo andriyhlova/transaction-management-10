@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: dotnet tool install --global dotnet-sonarscanner
-    - run: dotnet sonarscanner begin /k:"transaction-management-10" /o:"andriyhlova" /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+    - run: dotnet sonarscanner begin /k:"transaction-management-10" /o:"andriyhlova" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
     - run: dotnet build  --no-incremental
     - run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
