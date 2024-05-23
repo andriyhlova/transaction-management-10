@@ -7,6 +7,7 @@ namespace TransactionManagement.Controllers
     public class TransactionsController : Controller
     {
         private readonly ITransactionService _transactionService;
+        private string password = "1232456";
 
         public TransactionsController(ITransactionService transactionService)
         {
